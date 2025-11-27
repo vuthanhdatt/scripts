@@ -20,23 +20,34 @@ def write_json_file(path: str, data: list) -> None:
 
 
 def main():
-    URL = f"{BASE_URL}/review/list/96340232-vu-dat?shelf=recommendation"
+    URL = f"{BASE_URL}/review/list/96340232-vu-dat?order=d&shelf=recommendation&sort=date_read"
 
     BOOK_DETAIL_PATH = 'data/goodreads.json'
 
     all_book_detail = read_json_file(BOOK_DETAIL_PATH)
-    crawled_book = [book['detail_link'] for book in all_book_detail]
     
     response = requests.get(URL, headers=HEADERS)
 
     soup = BeautifulSoup(response.content, 'html.parser')
     books_tag = soup.find('tbody', {'id': 'booksBody'})
     all_book_raw = books_tag.find_all('tr', {'class':'bookalike review'})
-    
+
+    current_shelf_links = set()
+    parsers = []
+
     for book_tag in all_book_raw:
         parser = ParseBookInfo(book_tag)
+        parsers.append(parser)
+        if parser.detail_link:
+            current_shelf_links.add(parser.detail_link)
+    
+    # Filter out books that are no longer on the shelf
+    all_book_detail = [book for book in all_book_detail if book.get('detail_link') in current_shelf_links]
+    crawled_book_links = {book['detail_link'] for book in all_book_detail}
+
+    for parser in parsers:
         detail_link = parser.detail_link
-        if detail_link not in crawled_book:
+        if detail_link not in crawled_book_links:
             logging.info(f'Crawling book detail for {parser.title}')
             all_book_detail.append(parser.to_dict())
         else:
