@@ -43,5 +43,23 @@
         "author": "Haruki Murakami",
         "read_date": "Apr 07, 2024",
         "detail_link": "https://www.goodreads.com/review/show/6391414140"
+    },
+    {
+        "title": "Hoa trên mộ Algernon",
+        "book_link": "https://www.goodreads.com/book/show/13507473-hoa-tr-n-m-algernon",
+        "book_cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1330666050l/13507473.jpg",
+        "rating": 4,
+        "author": "Daniel Keyes",
+        "read_date": "Feb 06, 2023",
+        "detail_link": "https://www.goodreads.com/review/show/6258552351"
+    },
+    {
+        "title": "Nguời bà tài giỏi vùng Saga\n        (#1)",
+        "book_link": "https://www.goodreads.com/book/show/49543723-ngu-i-b-t-i-gi-i-v-ng-saga",
+        "book_cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1717062470l/49543723.jpg",
+        "rating": 5,
+        "author": "Yoshichi Shimada",
+        "read_date": "Jun 27, 2019",
+        "detail_link": "https://www.goodreads.com/review/show/2873661695"
     }
 ]
